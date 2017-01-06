@@ -1,0 +1,119 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/styles.css">
+
+<dom-module id="my-view2">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+    </style>
+
+    <div class="card">
+      <div class="circle">2</div>
+      <h1 class="text-center">Geographic Analysis According to Room Nights 2016</h1>
+<div>
+    <div id="geochart-colors" class="chart"></div>
+   </div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-view2',
+    });
+  </script>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('upcoming', {'packages':['geochart']});
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Country',   'Room Nights', 'YOY'],
+          ['China ',3918,50],
+          ['Chinese Taipei ',,0],
+          ['Japan ',1401,-50],
+          ['Korea (ROK)',240,0],
+          ['Pakistan',2642,150],
+          ['India',5070,110],
+          ['Sri Lanka ',2051,0],
+          ['Malaysia',11669,-60],
+          ['Singapore ',2698,0],
+          ['Hong Kong',414,0],
+          ['Vietnam ',203,0],
+          ['Indonesia ',2523,100],
+          ['Brunei Darussallam ',145,0],
+          ['Taiwan',941,0],
+          ['Thailand ',383,0],
+          ['Philipines ',462,0],
+          ['Saudi Arabia ',4862,0],
+          ['UAE',566,0],
+          ['Iran ',2760,0],
+          ['Turkey ',0,0],
+          ['Qatar ',284,0],
+          ['Iraq ',178,0],
+          ['Oman ',1985,0],
+          ['Bahrain',159,0],
+          ['Kuwait',364,0],
+          ['Australia ',806,-70],
+          ['New Zealand',79,0],
+          ['USA',419,0],
+          ['Canada',132,0],
+          ['Other Americas',152,-90],
+          ['South Africa ',265,200],
+          ['Nigeria ',0,0],
+          ['Egypt',536,0],
+          ['Other Africa',2695,0],
+          ['Kazakhstan ',34,0],
+          ['Uzbekistan',0,0],
+          ['UK',779,-20],
+          ['France',555,0],
+          ['Germany',916,100],
+          ['Netherlands',1919,270],
+          ['Russian Federation ',281,0],
+          ['Italy ',145,0],
+          ['Sweden ',171,0],
+          ['Switzerland',76,-70],
+          ['Denmark ',230,0],
+          ['Ireland',0,0],
+          ['Norway ',58,0],
+          ['Spain ',64,0],
+          ['Belgium ',60,0],
+          ['Finland',55,0],
+          ['Poland',0,0],
+          ['Austria ',135,0],
+          ['Brazil ',0,0],
+        ]);
+
+        var options = {
+          region: 'world', // Africa
+          colorAxis: {colors: ['#68efad','#212121','#F44336']},
+          backgroundColor: '#81D4FA',
+          datalessRegionColor: '#FFECB3',
+          defaultColor: '#2c3e50',
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('geochart-colors'));
+        chart.draw(data, options);
+      };
+  
+        
+    </script>
+  </head>
+</dom-module>
